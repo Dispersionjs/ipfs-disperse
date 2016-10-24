@@ -1,2 +1,2 @@
-# ipfs-dispersion
+# ipfs-disperse
 An IPFS library.
