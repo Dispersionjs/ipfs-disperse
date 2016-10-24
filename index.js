@@ -59,7 +59,7 @@ disperse.makeHashObj = function (hashStr) {
   return hashObj;
 }
 
-disperse.makeTinyUrlPromise = function(url) {
+disperse.makeTinyUrlPromise = function (url) {
   return new Promise((resolve, reject) => {
     if (!/Qm/.test(url)) reject(new Error('invalid hash'));
     if (!/https:\/\/ipfs.io\/ipfs\//.test(url)) url = `https://ipfs.io/ipfs/${url}`;
@@ -67,6 +67,18 @@ disperse.makeTinyUrlPromise = function(url) {
       resolve(res); //Returns a shorter version of http://google.com - http://tinyurl.com/2tx
     });
   });
+}
+
+disperse.addPin = function (pinHash) {
+  return new Promise((resolve, reject) => {
+    exec('ipfs pin add ' + pinHash, (error, stdout, stderr) => {
+      if (error) {
+        reject(new Error(`error in addPin: ${error}`));
+      } else {
+        resolve(pinHash + " has been added");
+      }
+    });
+  })
 }
 
 module.exports = disperse;

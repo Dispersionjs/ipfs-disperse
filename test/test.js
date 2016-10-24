@@ -49,4 +49,20 @@ describe('makeTinyUrlPromise', function () {
   });
 });
 
+describe('addPin', function () {
+  this.timeout(15000);
+  let petalHash = 'QmdjC7zjKi7pYoo3YatWL6pNvJqDxAZJhXBBeXzXhzhEwp';
+  it("should add pin and have proper respones", function (done) {
+    disperse.addPin("QmaC8Mu1ycE2NhfHSarDoW7CXCrdcKnDiDLsiumk79XLrz","This is a Test").then(function (data) {
+      expect(data).to.equal('QmaC8Mu1ycE2NhfHSarDoW7CXCrdcKnDiDLsiumk79XLrz has been added');
+      done();
+    }).catch(function (error) {
+      done(error);
+    });
+  });
+});
+
+
+
+
 
