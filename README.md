@@ -1,3 +1,5 @@
+![petal](https://ipfs.io/ipfs/QmdjC7zjKi7pYoo3YatWL6pNvJqDxAZJhXBBeXzXhzhEwp)
+
 # ipfs-disperse
 
 Use when developing node.js applications with IPFS. 
