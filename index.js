@@ -4,8 +4,8 @@ const exec = child_process.exec
 const spawn = child_process.spawn
 const path = require('path');
 const tinyUrl = require('tinyurl');
-const disperse = {};
 
+const disperse = {};
 
 disperse.startDaemon = function () {
   let daemonCommand = spawn('ipfs', ['daemon']);
@@ -33,12 +33,11 @@ disperse.startDaemon = function () {
   })
 }
 
-
-disperse.ipfsAddPromise = function (file) {
+disperse.ipfsAdd = function (file) {
   return new Promise((resolve, reject) => {
     exec(`ipfs add '${file}'`, (error, stdout, stderr) => {
       if (error) {
-        reject(new Error(`error in ipfsAddPromise: ${error}`));
+        reject(new Error(`error in ipfsAdd: ${error}`));
       } else {
         let hashObj = disperse.makeHashObj(stdout);
         resolve(hashObj);
@@ -59,7 +58,7 @@ disperse.makeHashObj = function (hashStr) {
   return hashObj;
 }
 
-disperse.makeTinyUrlPromise = function (url) {
+disperse.makeTinyUrl = function (url) {
   return new Promise((resolve, reject) => {
     if (!/Qm/.test(url)) reject(new Error('invalid hash'));
     if (!/https:\/\/ipfs.io\/ipfs\//.test(url)) url = `https://ipfs.io/ipfs/${url}`;
@@ -79,6 +78,32 @@ disperse.addPin = function (pinHash) {
       }
     });
   })
+}
+
+disperse.unPin = function (pinHash) {
+  return new Promise((resolve, reject) => {
+    exec('ipfs pin rm ' + pinHash, (error, stdout, stderr) => {
+      if (error) {
+        reject(new Error(`error in addPin: ${error}`));
+      } else {
+        resolve(pinHash + " has been removed");
+      }
+    });
+  })
+}
+
+disperse.publishHash = function (hash) {
+  let publishIt = 'ipfs name publish ' + hash;
+  return new Promise((resolve, reject) => {
+    exec(publishIt, (error, stdout, stderr) => {
+      if (error) {
+        reject(new Error(`error publishing: ${error}`));
+      } else {
+        resolve(hash + " has been published");
+      }
+    });
+  })
+
 }
 
 module.exports = disperse;
