@@ -4,8 +4,8 @@ const exec = child_process.exec
 const spawn = child_process.spawn
 const path = require('path');
 const tinyUrl = require('tinyurl');
-const disperse = {};
 
+const disperse = {};
 
 disperse.startDaemon = function () {
   let daemonCommand = spawn('ipfs', ['daemon']);
@@ -32,7 +32,6 @@ disperse.startDaemon = function () {
     }
   })
 }
-
 
 disperse.ipfsAddPromise = function (file) {
   return new Promise((resolve, reject) => {
@@ -79,6 +78,32 @@ disperse.addPin = function (pinHash) {
       }
     });
   })
+}
+
+disperse.unPin = function (pinHash) {
+  return new Promise((resolve, reject) => {
+    exec('ipfs pin rm ' + pinHash, (error, stdout, stderr) => {
+      if (error) {
+        reject(new Error(`error in addPin: ${error}`));
+      } else {
+        resolve(pinHash + " has been removed");
+      }
+    });
+  })
+}
+
+disperse.publishHash = function (hash) {
+  let publishIt = 'ipfs name publish ' + hash;
+  return new Promise((resolve, reject) => {
+    exec(publishIt, (error, stdout, stderr) => {
+      if (error) {
+        reject(new Error(`error publishing: ${error}`));
+      } else {
+        resolve(hash + " has been published");
+      }
+    });
+  })
+
 }
 
 module.exports = disperse;

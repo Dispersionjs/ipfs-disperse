@@ -63,6 +63,34 @@ describe('addPin', function () {
 });
 
 
+describe('publishHash', function () {
+  this.timeout(15000);
+  let petalHash = 'QmdjC7zjKi7pYoo3YatWL6pNvJqDxAZJhXBBeXzXhzhEwp';
+  it("should remove pin and have proper respones", function (done) {
+    disperse.publishHash("QmaC8Mu1ycE2NhfHSarDoW7CXCrdcKnDiDLsiumk79XLrz").then(function (data) {
+      expect(data).to.equal('QmaC8Mu1ycE2NhfHSarDoW7CXCrdcKnDiDLsiumk79XLrz has been published');
+      done();
+    }).catch(function (error) {
+      done(error);
+    });
+  });
+});
+
+describe('unPin', function () {
+  this.timeout(15000);
+  let petalHash = 'QmdjC7zjKi7pYoo3YatWL6pNvJqDxAZJhXBBeXzXhzhEwp';
+  it("should remove pin and have proper respones", function (done) {
+    disperse.unPin("QmaC8Mu1ycE2NhfHSarDoW7CXCrdcKnDiDLsiumk79XLrz","This is a Test").then(function (data) {
+      expect(data).to.equal('QmaC8Mu1ycE2NhfHSarDoW7CXCrdcKnDiDLsiumk79XLrz has been removed');
+      done();
+    }).catch(function (error) {
+      done(error);
+    });
+  });
+});
+
+
+
 
 
 
