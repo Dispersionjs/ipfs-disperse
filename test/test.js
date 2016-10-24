@@ -1,8 +1,6 @@
 var assert = require('assert');
 var disperse = require('../index.js');
 var chai = require('chai');
-//var chaiAsPromised = require("chai-as-promised");
-//chai.use(chaiAsPromised);
 var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should;
@@ -38,15 +36,17 @@ describe('ipfsAddPromise', function () {
   });
 });
 
-// describe('makeTinyUrlPromise', function () {
-//   this.timeout(15000);
-//   let sampleUrl = 'https://ipfs.io/ipfs/QmaC8Mu1ycE2NhfHSarDoW7CXCrdcKnDiDLsiumk79XLrz';
-//   it('should return a tiny url', function (done) {
-//     library.makeTinyUrlPromise(sampleUrl).then(function (data) {
-//       expect(data.substring(0, 18)).to.equal('http://tinyurl.com');
-//       done();
-//     }).catch(function (error) {
-//       done(error);
-//     });
-//   });
-// });
+describe('makeTinyUrlPromise', function () {
+  this.timeout(15000);
+  let sampleUrl = 'https://ipfs.io/ipfs/QmaC8Mu1ycE2NhfHSarDoW7CXCrdcKnDiDLsiumk79XLrz';
+  it('should return a tiny url', function (done) {
+    disperse.makeTinyUrlPromise(sampleUrl).then(function (data) {
+      expect(data.substring(0, 18)).to.equal('http://tinyurl.com');
+      done();
+    }).catch(function (error) {
+      done(error);
+    });
+  });
+});
+
+
