@@ -17,6 +17,8 @@ Either through cloning with git or by using [npm](http://npmjs.org):
 
 # Usage
 
+Please install IPFS before installing ipfs-disperse from https://ipfs.io/docs/install/
+
     const ipfs-disperse = require('ipfs-disperse');
     
 ## ipfsAdd
