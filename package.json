@@ -1,0 +1,25 @@
+{
+  "name": "ipfs-disperse",
+  "version": "1.0.0",
+  "description": "A library of IPFS commands for Node.\"",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dispersionjs/ipfs-dispersion.git"
+  },
+  "keywords": [
+    "ipfs"
+  ],
+  "author": "DispersionJS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dispersionjs/ipfs-dispersion/issues"
+  },
+  "homepage": "https://github.com/Dispersionjs/ipfs-dispersion#readme"
+}
