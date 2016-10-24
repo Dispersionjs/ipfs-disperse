@@ -18,3 +18,35 @@ Either through cloning with git or by using [npm](http://npmjs.org):
 # Usage
 
     const ipfs-disperse = require('ipfs-disperse');
+    
+## ipfsAdd
+
+    disperse.ipfsAdd("file path").then(function (data) {
+          alert("file added correctly");
+      }).catch(function (error) {
+          alert("error");
+      });
+      
+## publishHash
+
+    disperse.publishHash("IPFS Hash").then(function (data) {
+          alert("Hash has been published!");
+      }).catch(function (error) {
+          alert("error");
+      });
+      
+## addPin
+
+    disperse.addPin("IPFS Hash").then(function (data) {
+          alert("Hash has been pinned!");
+      }).catch(function (error) {
+          alert("error");
+      });
+      
+## unPin
+
+    disperse.unPin("IPFS Hash").then(function (data) {
+          alert("Hash has been unpinned!");
+      }).catch(function (error) {
+          alert("error");
+      });
